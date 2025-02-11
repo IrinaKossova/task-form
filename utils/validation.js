@@ -79,8 +79,8 @@ export const validateForm = (formState, apiToken) => {
     0,
     undefined,
     "Необходимо указать минимальный бюджет.",
-    "минимальный бюджет должен быть целым числом.",
-    "минимальный бюджет не может быть меньше 0.",
+    "Минимальный бюджет должен быть целым числом.",
+    "Минимальный бюджет не может быть меньше 0.",
     undefined
   );
 
@@ -153,15 +153,15 @@ export const validateForm = (formState, apiToken) => {
     const errors = {};
 
     if (isRequired && !fieldValue) {
-      errors[fieldName] = `Необходимо указать ${fieldName}`;
+      errors[fieldName] = "Необходимо указать значение";
     } else if (fieldValue && !isInteger(fieldValue)) {
-      errors[fieldName] = `Поле ${fieldName} должно быть целым числом.`;
+      errors[fieldName] = "Значение должно быть целым числом.";
     } else if (fieldValue !== undefined) {
       const numValue = Number(fieldValue);
       if (minValue !== undefined && numValue < minValue) {
-        errors[fieldName] = `Поле ${fieldName} не может быть меньше ${minValue}.`;
+        errors[fieldName] = "Значение не может быть меньше минимального.";
       } else if (maxValue !== undefined && numValue > maxValue) {
-        errors[fieldName] = `Поле ${fieldName} не может быть больше ${maxValue}.`;
+        errors[fieldName] = "Значение не может быть больше максимального.";
       }
     }
     return errors;
@@ -202,11 +202,11 @@ export const validateForm = (formState, apiToken) => {
 
   // ID задачи 
   if (!formState.rules.task_id) {
-    rulesErrors.task_id = "Необходимо указать Task ID";
+    rulesErrors.task_id = "Необходимо указать ID задачи";
   } else if (!isInteger(formState.rules.task_id)) {
-    rulesErrors.task_id = "Task ID должно быть целым числом.";
+    rulesErrors.task_id = "ID задачи должно быть целым числом.";
   } else if (Number(formState.rules.task_id) <= 0) {
-    rulesErrors.task_id = "Task ID должно быть положительным числом.";
+    rulesErrors.task_id = "ID задачи должно быть положительным числом.";
   }
 
   // Добавить ошибки в правилах в общий объект ошибок
